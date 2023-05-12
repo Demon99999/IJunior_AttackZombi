@@ -19,7 +19,6 @@ public class Bullet : MonoBehaviour
             visible = false;
         else
             gameObject.SetActive(false);
-
     }
 
     public void ShowBullet(Vector3 from,Vector3 to)
