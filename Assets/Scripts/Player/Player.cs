@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-//[RequireComponent(typeof(PlayerMove))]
+[RequireComponent(typeof(PlayerMove))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _health;
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         ScoreChanged?.Invoke(_score);
         _currentHealth = _health;
         HealthChanged?.Invoke(_currentHealth, _health);
-        _playerMove.ResetPlater();
+        _playerMove.ResetPlayer();
     }
 
     public void ApplayDamage(int damage)

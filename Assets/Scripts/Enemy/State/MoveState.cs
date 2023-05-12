@@ -6,6 +6,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class MoveState : State
 {
+    private const string Run = "Run";
+
     [SerializeField] private float _speed;
 
     private NavMeshAgent _navMeshAgent;
@@ -24,7 +26,7 @@ public class MoveState : State
         {
             _navMeshAgent.SetDestination(Target.transform.position);
             transform.rotation = Quaternion.LookRotation(_navMeshAgent.velocity.normalized);
-            _animator.Play("Run");
+            _animator.Play(Run);
         }
     }
 }

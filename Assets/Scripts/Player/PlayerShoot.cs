@@ -25,7 +25,7 @@ public class PlayerShoot : MonoBehaviour
 
                 if (hit.transform != null)
                 {
-                    var zombi = hit.transform.GetComponent<Enemy>();//
+                    var zombi = hit.transform.GetComponent<Enemy>();
 
                     if (zombi != null)
                     {

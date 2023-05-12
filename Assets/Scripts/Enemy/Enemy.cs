@@ -7,6 +7,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
+    private const string Die = "Die";
+
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private int _health;
 
@@ -43,7 +45,7 @@ public class Enemy : MonoBehaviour
         {
             IsDead = true;
             _navMeshAgent.isStopped = true;
-            _animator.Play("Die");
+            _animator.Play(Die);
             _particleSystem.Play();
             _target.AddScore();
             StartCoroutine(DisableZombi());

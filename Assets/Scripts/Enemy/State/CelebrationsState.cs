@@ -6,6 +6,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class CelebrationsState : State
 {
+    private const string Idle = "idle";
+
     private Animator _animator;
     private NavMeshAgent _navMeshAgent;
 
@@ -17,7 +19,7 @@ public class CelebrationsState : State
 
     private void OnEnable()
     {
-        _animator.Play("idle");
+        _animator.Play(Idle);
         _navMeshAgent.isStopped = true;
     }
 

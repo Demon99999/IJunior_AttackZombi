@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,14 +10,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private Player _player;
     [SerializeField] private GameObject _container;
-    [SerializeField] private NextWaveButton _nextWaveButton;
+    [SerializeField] private float _delayBetweenWaves;
 
     private Wave _currentWave;
     private int _currentWaveNumber = 0;
     private float _timeAfterLastSpawn;
     private int _spawned;
 
-    public event UnityAction AllEnemySpawned;
     public event UnityAction<int, int> EnemyCountChanged;
 
     private void Start()
@@ -45,7 +45,7 @@ public class Spawner : MonoBehaviour
         {
             if (_waves.Count > _currentWaveNumber + 1)
             {
-                AllEnemySpawned?.Invoke();
+                StartCoroutine(NextWaveDelay());
             }
 
             _currentWave = null;
@@ -57,7 +57,6 @@ public class Spawner : MonoBehaviour
         _currentWaveNumber = 0;
         _spawned = 0;
         _timeAfterLastSpawn = 0;
-        _nextWaveButton.HideButton();
         SetWave(_currentWaveNumber);
 
         foreach (Transform child in _container.transform)
@@ -86,6 +85,18 @@ public class Spawner : MonoBehaviour
         _currentWave = _waves[index];
     }
 
+    private IEnumerator NextWaveDelay()
+    {
+        float time = 0;
+        
+        do
+        { 
+            time += Time.deltaTime; 
+            yield return null; 
+        } while (time < _delayBetweenWaves); 
+        
+        NextWave();
+    }
 }
 
 [System.Serializable]

@@ -5,13 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class AimCursor : MonoBehaviour
 {
-    private SpriteRenderer _spriteRenderer;
-    private int layerMask;
+    [SerializeField] private LayerMask _layerMask;
 
+    private SpriteRenderer _spriteRenderer;
+    
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        layerMask = LayerMask.GetMask("Ground");
     }
 
     private void Update()
@@ -19,7 +19,7 @@ public class AimCursor : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (!Physics.Raycast(ray, out hit, 1000, layerMask))
+        if (!Physics.Raycast(ray, out hit, Mathf.Infinity, _layerMask))
         {
             _spriteRenderer.enabled = false;
         }

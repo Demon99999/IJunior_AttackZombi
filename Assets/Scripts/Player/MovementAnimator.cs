@@ -6,6 +6,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class MovementAnimator : MonoBehaviour
 {
+    private const string Speed = "speed";
+
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
     
@@ -17,6 +19,6 @@ public class MovementAnimator : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat("speed",_navMeshAgent.velocity.magnitude);
+        _animator.SetFloat(Speed,_navMeshAgent.velocity.magnitude);
     }
 }

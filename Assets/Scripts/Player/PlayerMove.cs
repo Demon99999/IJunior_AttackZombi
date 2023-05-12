@@ -45,7 +45,7 @@ public class PlayerMove : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(new Vector3(forward.x, 0, forward.z));
     }
 
-    public void ResetPlater()
+    public void ResetPlayer()
     {
         transform.position = _startPosition;
     }
